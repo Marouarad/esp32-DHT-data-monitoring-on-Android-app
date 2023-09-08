@@ -20,3 +20,6 @@ A Firebase account.
 3- Upload the code to your ESP32.
 
 4- The DHT sensor data will be automatically sent to Firebase.
+
+<img width="287" alt="FIREBASE" src="https://github.com/Marouarad/esp32-DHT-data-monitoring-on-Android-app/assets/114839150/08a83ceb-7ac1-4e7b-ad71-92970acb966b">
+
