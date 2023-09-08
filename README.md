@@ -4,6 +4,7 @@ Monitor DHT sensor data on an Android application, using Firebase
 Before getting started, make sure you have the following:
 
 An ESP32 module.
+
 DHT sensor
 Arduino IDE installed with ESP32 support.
 Android Studio installed.
