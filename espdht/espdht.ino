@@ -16,15 +16,15 @@ char buff[10];          // create a buffer for converting floats to strings
 FirebaseData firebaseData;      // create a FirebaseData object
 FirebaseJson json;              // create a FirebaseJson object
  
-String mytemp;      // create a String object for the temperature
-String myhum;       // create a String object for the humidity
+String tempe;      // create a String object for the temperature
+String humi;       // create a String object for the humidity
 
 void setup()
 {
   Serial.begin(115200);   // initialize serial communication at 115200 baud
 
   // Initialize the DHT sensor
-  dht.setup(DHTpin, DHTesp::DHT11);
+  dht.setup(DHTpin, DHTesp::DHT22);
 
   // Connect to Wi-Fi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);   // start WiFi connection
@@ -60,15 +60,15 @@ void loop()
   
   float humidity = dht.getHumidity();       // get the humidity reading
   float temperature = dht.getTemperature(); // get the temperature reading
-  myhum = dtostrf(humidity,3,2,buff);       // convert humidity to a String
-  mytemp = dtostrf(temperature,3,2,buff);   // convert temperature to a String
+  humi = dtostrf(humidity,3,2,buff);       // convert humidity to a String
+  tempe = dtostrf(temperature,3,2,buff);   // convert temperature to a String
 
   // Print the temperature and humidity to the serial monitor
   Serial.print("Temperature: ");
-  Serial.print(mytemp);
+  Serial.print(tempe);
   Serial.println(" C");
   Serial.print("Humidity: ");
-  Serial.print(myhum);
+  Serial.print(humi);
   Serial.println(" %");
 
   // Get the current date and time
@@ -86,13 +86,12 @@ void loop()
 
   // Add the temperature, humidity, and date/time to the Firebase JSON object
   json.clear();
-  json.set("/hum", myhum);
-  json.set("/temp", mytemp);
+  json.set("/hum", humi);
+  json.set("/temp", tempe);
   json.set("/datetime", datetime);
 
   // Update the Firebase database with the JSON object
-  Firebase.updateNode(firebaseData,"/DHTSensor",json);
+  Firebase.updateNode(firebaseData,"/DHT",json);
 
-  // Wait for 5 seconds before reading the sensor again
-  delay(5000); 
+  delay(3000); 
 }
