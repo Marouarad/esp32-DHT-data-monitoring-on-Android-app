@@ -14,7 +14,7 @@ Before getting started, make sure you have the following:
 
 -Android Studio installed.
 
-A Firebase account.
+-A Firebase account.
 # ESP32 Configuration
 1- Open the Arduino code located in the "espdht" directory.
 
